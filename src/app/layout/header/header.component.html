@@ -1,0 +1,81 @@
+<header class="border-b border-line bg-bg">
+  <div class="mx-auto flex max-w-content items-center justify-between gap-6 px-6 py-4 md:px-8">
+    <a
+      routerLink="/"
+      class="font-display text-lg font-semibold tracking-tight text-ink"
+      routerLinkActive="text-ink"
+      [routerLinkActiveOptions]="{ exact: true }"
+      ariaCurrentWhenActive="page"
+      (click)="closeMenu()"
+    >
+      PRAGMA
+    </a>
+
+    <nav class="hidden items-center gap-8 md:flex" aria-label="Navigation principale">
+      @for (item of navItems; track item.path) {
+        <a
+          [routerLink]="item.path"
+          routerLinkActive="text-ink"
+          ariaCurrentWhenActive="page"
+          class="text-sm font-medium text-ink-muted transition-colors hover:text-ink"
+        >
+          {{ item.label }}
+        </a>
+      }
+      <p-button
+        label="Parler d'un projet"
+        routerLink="/contact"
+        size="small"
+      />
+    </nav>
+
+    <p-button
+      class="md:hidden"
+      [text]="true"
+      [rounded]="false"
+      severity="secondary"
+      [attr.aria-expanded]="menuOpen()"
+      [attr.aria-controls]="'mobile-nav'"
+      [ariaLabel]="menuOpen() ? 'Fermer le menu' : 'Ouvrir le menu'"
+      (onClick)="toggleMenu()"
+    >
+      @if (menuOpen()) {
+        <svg lucideX class="text-ink" [size]="22"></svg>
+      } @else {
+        <svg lucideMenu class="text-ink" [size]="22"></svg>
+      }
+    </p-button>
+  </div>
+
+  <nav
+    id="mobile-nav"
+    class="border-t border-line px-6 py-4 md:hidden"
+    aria-label="Navigation mobile"
+    [class.hidden]="!menuOpen()"
+    [attr.aria-hidden]="!menuOpen()"
+  >
+    <ul class="flex flex-col gap-1">
+      @for (item of navItems; track item.path) {
+        <li>
+          <a
+            [routerLink]="item.path"
+            routerLinkActive="text-ink"
+            ariaCurrentWhenActive="page"
+            class="block py-3 text-base font-medium text-ink-muted"
+            (click)="closeMenu()"
+          >
+            {{ item.label }}
+          </a>
+        </li>
+      }
+      <li class="pt-2">
+        <p-button
+          label="Parler d'un projet"
+          routerLink="/contact"
+          styleClass="w-full"
+          (onClick)="closeMenu()"
+        />
+      </li>
+    </ul>
+  </nav>
+</header>

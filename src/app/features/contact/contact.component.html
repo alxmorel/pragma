@@ -1,0 +1,238 @@
+<div class="bg-bg">
+  <div class="mx-auto grid max-w-content gap-10 px-6 py-12 md:grid-cols-12 md:gap-12 md:px-8 md:py-16">
+    <!-- Contexte -->
+    <aside class="md:col-span-4">
+      <h1 class="font-display text-3xl font-semibold tracking-tight text-ink md:text-4xl">
+        Contact
+      </h1>
+      <div class="mt-4 h-0.5 w-10 bg-accent" aria-hidden="true"></div>
+
+      <p class="mt-6 text-base leading-relaxed text-ink-muted">
+        Utilisez ce formulaire pour décrire un besoin logiciel concret :
+        périmètre, contraintes, contexte technique.
+      </p>
+      <p class="mt-4 text-sm leading-relaxed text-ink-muted">
+        L’envoi automatique n’est pas encore connecté. Aucun message n’est transmis
+        pour le moment via ce formulaire.
+      </p>
+
+      <div class="mt-10 border-t border-line pt-6">
+        <h2 class="font-display text-base font-medium text-ink">Coordonnées</h2>
+        <!-- TODO(dev): ajouter email / téléphone réels dès qu’ils sont disponibles. -->
+        <p class="mt-3 text-sm leading-relaxed text-ink-muted">
+          Les coordonnées directes seront indiquées ici prochainement.
+        </p>
+      </div>
+    </aside>
+
+    <!-- Formulaire -->
+    <section class="md:col-span-8" aria-labelledby="contact-form-title">
+      <div class="border border-line bg-surface p-6 md:p-8">
+        <h2 id="contact-form-title" class="font-display text-xl font-medium text-ink">
+          Formulaire
+        </h2>
+        <p class="mt-2 text-sm text-ink-muted">
+          Les champs marqués d’un astérisque (*) sont obligatoires.
+        </p>
+
+        <div
+          class="mt-6"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          @if (formStatus() === 'pending_backend') {
+            <p-message
+              severity="warn"
+              text="Formulaire valide, mais aucun envoi n’a été effectué : le service d’envoi n’est pas encore configuré. Aucun message n’a été transmis."
+              styleClass="w-full"
+            />
+          }
+          @if (formStatus() === 'error') {
+            <p-message
+              severity="error"
+              text="Une erreur est survenue. Aucun message n’a été transmis."
+              styleClass="w-full"
+            />
+          }
+        </div>
+
+        <form class="mt-8 space-y-6" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+          <div class="space-y-2">
+            <label for="contact-name" class="block text-sm font-medium text-ink">
+              Nom <span class="text-accent" aria-hidden="true">*</span>
+              <span class="sr-only">(obligatoire)</span>
+            </label>
+            <input
+              id="contact-name"
+              type="text"
+              pInputText
+              fluid
+              formControlName="name"
+              autocomplete="name"
+              class="w-full"
+              [attr.aria-required]="true"
+              [attr.aria-invalid]="showError('name') ? true : null"
+              [attr.aria-describedby]="showError('name') ? errorId('name') : null"
+            />
+            @if (showError('name')) {
+              <p [id]="errorId('name')" class="text-sm text-danger" role="alert">
+                @if (form.controls.name.hasError('required')) {
+                  Indiquez votre nom.
+                } @else if (form.controls.name.hasError('minlength')) {
+                  Le nom doit contenir au moins 2 caractères.
+                }
+              </p>
+            }
+          </div>
+
+          <div class="space-y-2">
+            <label for="contact-company" class="block text-sm font-medium text-ink">
+              Entreprise <span class="text-accent" aria-hidden="true">*</span>
+              <span class="sr-only">(obligatoire)</span>
+            </label>
+            <input
+              id="contact-company"
+              type="text"
+              pInputText
+              fluid
+              formControlName="company"
+              autocomplete="organization"
+              class="w-full"
+              [attr.aria-required]="true"
+              [attr.aria-invalid]="showError('company') ? true : null"
+              [attr.aria-describedby]="showError('company') ? errorId('company') : null"
+            />
+            @if (showError('company')) {
+              <p [id]="errorId('company')" class="text-sm text-danger" role="alert">
+                Indiquez votre entreprise.
+              </p>
+            }
+          </div>
+
+          <div class="space-y-2">
+            <label for="contact-email" class="block text-sm font-medium text-ink">
+              Email <span class="text-accent" aria-hidden="true">*</span>
+              <span class="sr-only">(obligatoire)</span>
+            </label>
+            <input
+              id="contact-email"
+              type="email"
+              pInputText
+              fluid
+              formControlName="email"
+              autocomplete="email"
+              class="w-full"
+              [attr.aria-required]="true"
+              [attr.aria-invalid]="showError('email') ? true : null"
+              [attr.aria-describedby]="showError('email') ? errorId('email') : null"
+            />
+            @if (showError('email')) {
+              <p [id]="errorId('email')" class="text-sm text-danger" role="alert">
+                @if (form.controls.email.hasError('required')) {
+                  Indiquez votre adresse email.
+                } @else if (form.controls.email.hasError('email')) {
+                  Indiquez une adresse email valide.
+                }
+              </p>
+            }
+          </div>
+
+          <div class="space-y-2">
+            <label for="contact-subject" class="block text-sm font-medium text-ink">
+              Sujet / besoin <span class="text-accent" aria-hidden="true">*</span>
+              <span class="sr-only">(obligatoire)</span>
+            </label>
+            <input
+              id="contact-subject"
+              type="text"
+              pInputText
+              fluid
+              formControlName="subject"
+              class="w-full"
+              [attr.aria-required]="true"
+              [attr.aria-invalid]="showError('subject') ? true : null"
+              [attr.aria-describedby]="showError('subject') ? errorId('subject') : null"
+            />
+            @if (showError('subject')) {
+              <p [id]="errorId('subject')" class="text-sm text-danger" role="alert">
+                Indiquez le sujet ou le besoin.
+              </p>
+            }
+          </div>
+
+          <div class="space-y-2">
+            <label for="contact-message" class="block text-sm font-medium text-ink">
+              Message <span class="text-accent" aria-hidden="true">*</span>
+              <span class="sr-only">(obligatoire)</span>
+            </label>
+            <textarea
+              id="contact-message"
+              pTextarea
+              fluid
+              rows="6"
+              formControlName="message"
+              class="w-full"
+              [attr.aria-required]="true"
+              [attr.aria-invalid]="showError('message') ? true : null"
+              [attr.aria-describedby]="showError('message') ? errorId('message') : null"
+            ></textarea>
+            @if (showError('message')) {
+              <p [id]="errorId('message')" class="text-sm text-danger" role="alert">
+                @if (form.controls.message.hasError('required')) {
+                  Décrivez votre besoin.
+                } @else if (form.controls.message.hasError('minlength')) {
+                  Le message doit contenir au moins 10 caractères.
+                }
+              </p>
+            }
+          </div>
+
+          <div class="space-y-2">
+            <div class="flex items-start gap-3">
+              <p-checkbox
+                formControlName="consent"
+                [binary]="true"
+                inputId="contact-consent"
+                [ariaLabelledBy]="'contact-consent-label'"
+              />
+              <label
+                id="contact-consent-label"
+                for="contact-consent"
+                class="text-sm leading-relaxed text-ink-muted"
+              >
+                J’accepte que les informations saisies soient utilisées pour me recontacter
+                au sujet de cette demande.
+                <span class="text-accent" aria-hidden="true">*</span>
+                <span class="sr-only">(obligatoire)</span>
+              </label>
+            </div>
+            @if (showError('consent')) {
+              <p [id]="errorId('consent')" class="text-sm text-danger" role="alert">
+                Le consentement est requis pour valider le formulaire.
+              </p>
+            }
+          </div>
+
+          <div class="pt-2">
+            <p-button
+              type="submit"
+              [label]="
+                formStatus() === 'pending_backend'
+                  ? 'Envoi non disponible'
+                  : 'Valider le formulaire'
+              "
+              [loading]="formStatus() === 'submitting'"
+              [disabled]="formStatus() === 'submitting' || formStatus() === 'pending_backend'"
+              styleClass="w-full sm:w-auto"
+            />
+            @if (formStatus() === 'pending_backend') {
+              <p class="mt-3 text-sm text-ink-muted">
+                Le formulaire est valide. L’envoi sera possible une fois le service connecté.
+              </p>
+            }
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>

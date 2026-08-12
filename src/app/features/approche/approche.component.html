@@ -1,0 +1,74 @@
+<article class="bg-bg">
+  <!-- En-tête manifeste : étroit, éditorial -pas un hero -->
+  <header class="border-b border-line">
+    <div class="mx-auto max-w-content px-6 py-14 md:px-8 md:py-20">
+      <p class="font-mono text-xs tracking-wide text-ink-muted">Approche</p>
+      <h1 class="mt-4 max-w-3xl font-display text-4xl font-semibold leading-[1.1] tracking-tight text-ink md:text-5xl md:leading-[1.08]">
+        Une ingénierie directe,<br class="hidden sm:block" />
+        orientée durée de vie du logiciel.
+      </h1>
+      <p class="mt-6 max-w-xl text-base leading-relaxed text-ink-muted md:text-lg">
+        PRAGMA n’est pas une ESN d’intermédiation.
+        Voici les principes qui structurent notre façon de travailler.
+      </p>
+    </div>
+  </header>
+
+  <!-- Principes : oppositions en séquence éditoriale -->
+  <div class="mx-auto max-w-content px-6 md:px-8">
+    @for (principle of principles; track principle.title; let index = $index; let last = $last) {
+      <section
+        class="border-b border-line py-10 md:py-12"
+        [class.border-b-0]="last"
+        [attr.aria-labelledby]="'principle-' + index"
+      >
+        @if (index % 2 === 0) {
+          <div class="max-w-3xl">
+            <h2
+              [id]="'principle-' + index"
+              class="font-display text-2xl font-medium leading-snug tracking-tight text-ink md:text-3xl"
+            >
+              {{ principle.title }}
+            </h2>
+            <div class="mt-4 h-0.5 w-8 bg-accent" aria-hidden="true"></div>
+            <p class="mt-5 text-base leading-relaxed text-ink-muted md:text-lg">
+              {{ principle.affirm }}
+            </p>
+          </div>
+        } @else {
+          <div class="grid gap-5 md:grid-cols-12 md:gap-10 md:items-start">
+            <h2
+              [id]="'principle-' + index"
+              class="font-display text-2xl font-medium leading-snug tracking-tight text-ink md:col-span-5 md:text-3xl"
+            >
+              {{ principle.title }}
+            </h2>
+            <div class="md:col-span-7 md:border-l md:border-line md:pl-10">
+              <div class="mb-4 h-0.5 w-8 bg-accent md:hidden" aria-hidden="true"></div>
+              <p class="text-base leading-relaxed text-ink-muted md:text-lg">
+                {{ principle.affirm }}
+              </p>
+            </div>
+          </div>
+        }
+      </section>
+    }
+  </div>
+
+  <!-- Clôture + CTA -->
+  <footer class="border-t border-line bg-surface">
+    <div class="mx-auto flex max-w-content flex-col gap-5 px-6 py-10 md:flex-row md:items-end md:justify-between md:px-8 md:py-12">
+      <div class="max-w-lg">
+        <p class="font-display text-lg font-medium leading-snug text-ink md:text-xl">
+          Si cette manière de travailler correspond à votre besoin,
+          parlons du projet.
+        </p>
+      </div>
+      <p-button
+        label="Parler d'un projet"
+        routerLink="/contact"
+        styleClass="self-start md:self-auto"
+      />
+    </div>
+  </footer>
+</article>

@@ -1,0 +1,159 @@
+<!-- Introduction : en-tête de page compact, pas un hero marketing -->
+<header class="border-b border-line bg-bg">
+  <div class="mx-auto grid max-w-content gap-8 px-6 py-12 md:grid-cols-12 md:gap-10 md:px-8 md:py-16">
+    <div class="md:col-span-4">
+      <h1 class="font-display text-3xl font-semibold tracking-tight text-ink md:text-4xl">
+        Expertises
+      </h1>
+      <div class="mt-4 h-0.5 w-10 bg-accent" aria-hidden="true"></div>
+    </div>
+    <div class="md:col-span-8 md:pt-1">
+      <p class="max-w-2xl text-lg leading-relaxed text-ink md:text-xl">
+        PRAGMA intervient sur la conception, le développement et l’évolution
+        d’applications logicielles, en collaboration directe avec les interlocuteurs techniques.
+      </p>
+      <p class="mt-4 max-w-2xl text-sm leading-relaxed text-ink-muted md:text-base">
+        Domaines couverts, technologies utilisées à ce jour, et cadre de collaboration.
+      </p>
+    </div>
+  </div>
+</header>
+
+<!-- Domaines : catalogue éditorial en lignes, pas de cards -->
+<section class="border-b border-line bg-bg" aria-labelledby="expertises-domains-title">
+  <div class="mx-auto max-w-content px-6 py-14 md:px-8 md:py-20">
+    <div class="flex items-baseline justify-between gap-6 border-b border-line pb-6">
+      <h2
+        id="expertises-domains-title"
+        class="font-display text-xl font-medium tracking-tight text-ink md:text-2xl"
+      >
+        Domaines d’intervention
+      </h2>
+      <p class="hidden font-mono text-xs text-ink-muted sm:block">
+        {{ domains.length }} domaines
+      </p>
+    </div>
+
+    <ul class="mt-2">
+      @for (domain of domains; track domain.title) {
+        <li class="grid gap-3 border-b border-line py-7 md:grid-cols-12 md:gap-8 md:py-8">
+          <div class="flex items-start gap-3 md:col-span-5">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden="true"></span>
+            <h3 class="font-display text-lg font-medium leading-snug text-ink md:text-xl">
+              {{ domain.title }}
+            </h3>
+          </div>
+          <p class="text-sm leading-relaxed text-ink-muted md:col-span-7 md:text-base">
+            {{ domain.description }}
+          </p>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- Socle technique : bandeau surface, tableau éditorial (≠ wrap mono de l'accueil) -->
+<section class="border-b border-line bg-surface" aria-labelledby="expertises-stack-title">
+  <div class="mx-auto max-w-content px-6 py-16 md:px-8 md:py-24">
+    <div class="max-w-xl">
+      <h2
+        id="expertises-stack-title"
+        class="font-display text-xl font-medium tracking-tight text-ink md:text-2xl"
+      >
+        Socle technique
+      </h2>
+      <p class="mt-3 text-sm leading-relaxed text-ink-muted md:text-base">
+        Technologies utilisées sur nos interventions à ce jour.
+      </p>
+    </div>
+
+    <div class="mt-10 border border-line">
+      <table class="w-full table-fixed border-collapse text-left">
+        <caption class="sr-only">
+          Technologies du socle PRAGMA et leur rôle
+        </caption>
+        <thead class="bg-accent-subtle">
+          <tr class="border-b border-line">
+            <th
+              scope="col"
+              class="w-[38%] px-3 py-3 font-mono text-xs font-medium tracking-wide text-ink sm:w-[30%] sm:px-5"
+            >
+              Technologie
+            </th>
+            <th
+              scope="col"
+              class="px-3 py-3 font-mono text-xs font-medium tracking-wide text-ink sm:px-5"
+            >
+              Rôle
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of stack; track item.name) {
+            <tr class="border-b border-line last:border-b-0">
+              <th
+                scope="row"
+                class="break-words px-3 py-3 align-top font-display text-sm font-medium text-ink sm:px-5 sm:py-4 sm:text-base md:text-lg"
+              >
+                {{ item.name }}
+              </th>
+              <td class="break-words px-3 py-3 align-top text-sm leading-relaxed text-ink-muted sm:px-5 sm:py-4 sm:text-base">
+                {{ item.role }}
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!--
+  TODO: préciser les modes d'engagement (renfort d'équipe, prise en charge de projet, etc.)
+  une fois le modèle commercial validé. Ne pas inventer de packaging en attendant.
+-->
+<section class="border-b border-line bg-bg" aria-labelledby="expertises-modes-title">
+  <div class="mx-auto grid max-w-content gap-8 px-6 py-14 md:grid-cols-12 md:px-8 md:py-20">
+    <div class="md:col-span-5">
+      <h2
+        id="expertises-modes-title"
+        class="font-display text-xl font-medium tracking-tight text-ink md:text-2xl"
+      >
+        Modes d’intervention
+      </h2>
+    </div>
+    <div class="max-w-xl space-y-4 md:col-span-7">
+      <p class="text-sm leading-relaxed text-ink-muted md:text-base">
+        Collaboration directe avec les interlocuteurs techniques du projet.
+        L’intervention porte sur la conception, le développement et l’évolution
+        d’applications, pas sur de l’intermédiation.
+      </p>
+      <p class="text-sm leading-relaxed text-ink-muted md:text-base">
+        Le format d’engagement se discute selon le contexte :
+        périmètre, contraintes existantes, niveau d’implication attendu.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-bg" aria-labelledby="expertises-cta-title">
+  <div class="mx-auto flex max-w-content flex-col gap-6 px-6 py-12 md:flex-row md:items-center md:justify-between md:px-8 md:py-16">
+    <div class="max-w-lg">
+      <h2
+        id="expertises-cta-title"
+        class="font-display text-xl font-medium tracking-tight text-ink md:text-2xl"
+      >
+        Un périmètre technique à préciser&nbsp;?
+      </h2>
+      <p class="mt-2 text-sm leading-relaxed text-ink-muted">
+        Décrivez votre contexte pour que nous puissions indiquer ce que nous pouvons prendre en charge.
+      </p>
+    </div>
+    <p-button
+      label="Parler d'un projet"
+      routerLink="/contact"
+      styleClass="self-start md:self-auto"
+    />
+  </div>
+</section>

@@ -1,0 +1,82 @@
+---
+alwaysApply: true
+---
+Frontend Design
+UI library
+Use PrimeNG Community as the primary UI component library.
+Prefer PrimeNG components whenever an equivalent exists.
+Do not recreate standard UI components manually.
+Customize PrimeNG through design tokens whenever possible.
+Use Tailwind CSS for layout, spacing and responsive behavior.
+Use Lucide Angular for icons.
+Custom CSS
+Keep custom CSS/SCSS to a minimum.
+Do not write large amounts of bespoke CSS.
+Do not duplicate PrimeNG component functionality with custom CSS.
+Do not use inline styles unless technically necessary.
+Prefer design tokens and Tailwind utilities over component-specific CSS.
+Visual direction
+
+The interface must look intentionally designed by an experienced product designer and frontend engineer.
+
+The visual language should be:
+
+professional
+modern
+restrained
+distinctive
+coherent
+credible
+practical
+
+Visual quality must come primarily from:
+
+typography
+spacing
+hierarchy
+composition
+alignment
+contrast
+consistency
+
+Not from decorative effects.
+
+Anti-AI design patterns
+
+NEVER:
+
+use generic AI/SaaS landing page patterns
+use purple/blue gradients unless explicitly requested
+use excessive glassmorphism
+use excessive rounded cards
+use huge hero sections
+use decorative blobs
+use random floating UI elements
+use excessive shadows
+use gradients purely as decoration
+use excessive pill-shaped buttons
+use excessive animations
+use visual effects simply to make a page look "modern"
+create repetitive card grids without a clear UX purpose
+add decorative elements without a functional or compositional reason
+create unnecessary sections to fill empty space
+use generic AI-generated marketing copy
+Design principles
+Use a restrained typography hierarchy.
+Use a limited color palette.
+Maintain consistent spacing.
+Maintain consistent border radius.
+Maintain consistent interaction states.
+Prioritize readability and usability.
+Prefer whitespace over decoration.
+Create clear primary, secondary and tertiary visual hierarchy.
+Use asymmetry when it improves composition.
+Do not make every element visually prominent.
+Avoid visual noise.
+Responsive design
+Design mobile-first.
+Support mobile, tablet, desktop and large desktop.
+Prefer fluid layouts.
+Avoid breakpoint-specific hacks.
+Avoid hardcoded dimensions unless necessary.
+Avoid separate desktop/mobile implementations unless absolutely necessary.

@@ -1,0 +1,49 @@
+---
+alwaysApply: true
+---
+description: Angular and TypeScript coding standards
+globs:
+
+"src/**/*.ts"
+"src/**/*.html"
+alwaysApply: false
+Angular
+General
+Use modern Angular APIs.
+Use standalone components.
+Use strict TypeScript.
+Prefer signals for local reactive state when appropriate.
+Use Angular dependency injection rather than manual service instantiation.
+Use Angular Router for navigation.
+Use lazy loading for appropriate feature routes.
+Components
+Keep components focused.
+Avoid large monolithic components.
+Avoid unnecessary abstraction.
+Do not create a component unless it provides a clear benefit.
+Prefer composition over inheritance.
+Keep business logic out of templates.
+TypeScript
+Never use any unless there is a documented technical reason.
+Prefer explicit interfaces and types.
+Avoid unnecessary type assertions.
+Prefer immutable data patterns where practical.
+Use meaningful names.
+Avoid overly clever TypeScript.
+Templates
+Keep templates readable.
+Avoid deeply nested structures.
+Avoid duplicated template logic.
+Prefer Angular control flow syntax.
+Use accessible semantic HTML.
+Avoid unnecessary DOM elements.
+RxJS
+Use RxJS when dealing with asynchronous streams or external reactive APIs.
+Do not introduce RxJS solely for simple local state.
+Avoid unnecessarily complex observable chains.
+Accessibility
+Use semantic HTML.
+Provide accessible labels for interactive elements.
+Ensure keyboard navigation works.
+Do not rely exclusively on color to communicate information.
+Preserve visible focus states.

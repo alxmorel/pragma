@@ -1,0 +1,88 @@
+---
+alwaysApply: true
+---
+Architecture
+General principles
+
+Prioritize:
+
+simplicity
+maintainability
+readability
+reusability where justified
+performance
+
+Avoid over-engineering.
+
+Project structure
+
+Organize the application around features rather than technical layers whenever practical.
+
+Prefer:
+
+src/
+├── app/
+│   ├── core/
+│   ├── shared/
+│   ├── features/
+│   ├── layout/
+│   └── app.routes.ts
+
+Feature-specific components, services and models should remain close to their feature.
+
+Components
+
+Create reusable components only when:
+
+they are used more than once
+they represent a meaningful UI concept
+they isolate meaningful complexity
+
+Do not create components merely to reduce the number of lines in a file.
+
+Services
+
+Create a service when it:
+
+communicates with an API
+encapsulates shared business logic
+manages state shared across features
+integrates an external dependency
+
+Do not create services for trivial logic.
+
+Shared
+
+The shared layer should contain genuinely reusable functionality.
+
+Do not turn shared into a dumping ground for unrelated components.
+
+Dependencies
+
+Before adding a dependency:
+
+check whether Angular already provides the functionality
+check whether PrimeNG already provides it
+check whether an existing project dependency can solve it
+only then consider adding a new package
+
+Avoid dependency proliferation.
+
+Performance
+Lazy-load large features.
+Avoid unnecessary change detection work.
+Avoid unnecessary subscriptions.
+Optimize images.
+Avoid loading large libraries for small features.
+
+Do not optimize prematurely.
+
+Code generation
+
+When implementing a feature:
+
+inspect the existing architecture
+reuse existing components and utilities
+follow existing conventions
+implement the smallest coherent solution
+avoid unrelated refactoring
